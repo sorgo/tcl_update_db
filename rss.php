@@ -48,25 +48,18 @@ foreach ($allfiles as $file) {
     $date->setTimezone(new DateTimeZone('CET'));
     $dateLast = new DateTime($file['published_last']);
     $dateLast->setTimezone(new DateTimeZone('CET'));
-    echo '<div class="version">' . $file['tv'];
+    echo '<item>';
+    echo '<title>' . $file['tv'] . '</title>';
+    echo '<link>https://tclota.birth-online.de/timeline.php</link>';
+    echo '<description>';
     if ($file['fv']) {
-        echo '<span>(OTA from ' . $file['fv'] . ')</span>';
+        echo '(OTA from ' . $file['fv'] . ')';
     }
-
-?>    <item>
-       <title>News for September the Second</title>
-       <link>http://example.com/2002/09/01</link>
-       <description>other things happened today</description>
-    </item>
-<?php
-    #echo '</div>';
-    #echo '<div class="date"><span>' . $date->format('Y-m-d') . '</span> ' . $date->format('H:i.s') . ' CET</div>';
-    #echo '<div class="devices"><span>' . implode('</span> / <span>', $validDevs) . '</span></div>';
-    #echo '<div class="lastreleased">Last released: <span>' . $dateLast->format('Y-m-d H:i.s') . '</span> (first seen in the wild: <span>' . $firstSeen->format('Y-m-d H:i.s') . '</span>)</div>';
-    #echo '<div class="validfor">Valid for (order of release): <span>' . implode('</span>, <span>', $validRefs) . '</span></div>';
-    #print_r($file);
-    #print_r($updates);
-    echo '</div></div>';
+    echo $date->format('Y-m-d') . ' ' . $date->format('H:i.s') . ' CET<br />';
+    echo 'Devices: ' . implode(', ', $validDevs) . '<br />';
+    echo 'Last released: ' . $dateLast->format('Y-m-d H:i.s') . ' (first seen in the wild: ' . $firstSeen->format('Y-m-d H:i.s') . ')<br/>';
+    echo 'Valid for (order of release): ' . implode(', ', $validRefs) . '</description>';
+   
 }
 
 ?>
